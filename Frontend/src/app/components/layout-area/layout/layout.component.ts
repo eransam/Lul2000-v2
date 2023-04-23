@@ -11,12 +11,11 @@ export class LayoutComponent {
 
   async ngOnInit() {
     try {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/Lol2000Component');
     } catch (err: any) {}
   }
 
-  test(){
-    console.log("the-testo");
-    
+  test() {
+    console.log('the-testo');
   }
 }

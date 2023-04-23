@@ -50,6 +50,7 @@ import { ProductDialogComponentAvokado } from './components/products-area/produc
 import { ProductDialogNumbersComponent } from './components/product-dialog-numbers/product-dialog-numbers.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ReportAsciiComponent } from './components/report-ascii/report-ascii.component';
+import { Lol2000Component } from './components/lol2000/lol2000.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { ReportAsciiComponent } from './components/report-ascii/report-ascii.com
     PurchaseDetailsReportsListComponent,
     ProductDialogComponentAvokado,
     ProductDialogNumbersComponent,
-    ReportAsciiComponent
+    ReportAsciiComponent,
+    Lol2000Component
   ],
   imports: [
     BrowserModule,

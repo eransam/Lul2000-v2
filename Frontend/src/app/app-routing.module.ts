@@ -17,6 +17,7 @@ import { EmailComponent } from './email/email.component';
 import { SearchReportsComponent } from './search-reports/search-reports.component';
 import { PurchaseDetailsReportsListComponent } from './components/purchase-details-reports-card/purchase-details-reports-list/purchase-details-reports-list.component';
 import { LayoutComponent } from './components/layout-area/layout/layout.component';
+import { Lol2000Component } from './components/lol2000/lol2000.component';
 
 const routes: Routes = [
   { path: 'register', component: RegisterBothStepsComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
 
   { path: 'purchasedetailscomponent', component: PurchaseDetailsComponent },
   { path: 'SearchReportsComponent', component: SearchReportsComponent },
+  { path: 'Lol2000Component', component: Lol2000Component },
 
   { path: 'shopping', component: ShoppingComponent },
   {

@@ -1,0 +1,92 @@
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 0 auto;
+  direction: rtl; /* Add this line */
+}
+
+form label {
+  direction: rtl; /* Add this line */
+}
+
+.form-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-basis: calc(33.3% - 10px);
+  margin-right: 10px;
+}
+
+.form-column {
+  flex-basis: 100%;
+  margin-bottom: 10px;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: row;
+  padding-left: 23%;
+  padding-top: 5%;
+}
+
+.checkbox-group > div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkbox-group > div > label {
+  margin-right: 10px;
+}
+
+.population-checkboxes > div {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.population-checkboxes > div > label {
+  margin-right: 5px;
+}
+
+.population-checkboxes > div:first-child {
+  margin-right: 0;
+}
+
+button {
+  margin-right: 10px;
+}
+.buttons {
+  padding-top: 6%;
+}
+.population-checkboxes {
+  display: flex;
+  flex-direction: row;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-basis: calc(33.3% - 10px);
+  margin-right: 10px;
+  flex-direction: row-reverse;
+}
+
+form label {
+  padding-right: 15%;
+  text-align: right;
+  display: flex;
+}
+
+.population {
+  padding-right: 6%;
+}
