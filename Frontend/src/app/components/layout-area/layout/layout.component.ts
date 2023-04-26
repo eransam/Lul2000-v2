@@ -11,7 +11,7 @@ export class LayoutComponent {
 
   async ngOnInit() {
     try {
-      this.router.navigateByUrl('/Lol2000Component');
+      this.router.navigateByUrl('/PurchaseDetailsReportsListComponent');
     } catch (err: any) {}
   }
 

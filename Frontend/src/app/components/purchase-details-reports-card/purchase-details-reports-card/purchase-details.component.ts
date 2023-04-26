@@ -25,6 +25,7 @@ interface EmailConfig {
 })
 export class PurchaseDetailsComponent implements OnInit {
   @Input() purchases: any;
+  
   @ViewChild('myTable', { static: false }) table: ElementRef;
 
   constructor(
@@ -32,7 +33,10 @@ export class PurchaseDetailsComponent implements OnInit {
     private emailService: EmailService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log("purchases in details: " , this.purchases);
+
+  }
 
   async onSendEmail(): Promise<void> {
     const worksheet: XLSX.WorkSheet = XLSX.utils.table_to_sheet(

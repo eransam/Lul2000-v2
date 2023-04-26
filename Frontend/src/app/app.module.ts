@@ -94,7 +94,7 @@ import { Lol2000Component } from './components/lol2000/lol2000.component';
     ProductDialogComponentAvokado,
     ProductDialogNumbersComponent,
     ReportAsciiComponent,
-    Lol2000Component
+    Lol2000Component,
   ],
   imports: [
     BrowserModule,
@@ -108,8 +108,7 @@ import { Lol2000Component } from './components/lol2000/lol2000.component';
     MatAutocompleteModule,
     MatInputModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
   ],
   // Causes Angular to invoke that interceptor on each request:
   providers: [],

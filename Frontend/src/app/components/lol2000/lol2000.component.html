@@ -24,59 +24,68 @@
   <div class="form-group">
     <div class="form-row">
       <div class="form-column">
-        <label>Locality name:</label>
-        <input type="text" name="settlementName" />
+        <label>שם יישוב:</label>
+        <input
+          type="text"
+          name="settlementName"
+          [(ngModel)]="settlementName"
+          (ngModelChange)="onSettlementNameChange()"
+        />
       </div>
+      <select #dbcTzrt (change)="onSelectedIndexChanged()">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+        <option value="4">Option 4</option>
+      </select>
+
       <div class="form-column">
-        <label>Grower number:</label>
+        <label>מס' מגדל:</label>
         <input type="text" name="towerNumber" />
       </div>
       <div class="form-column">
-        <label>Order number:</label>
+        <label>מס' הנח''ש:</label>
         <input type="text" name="accountingNumber" />
       </div>
     </div>
+
     <div class="form-row">
-      <div class="form-column">
-        <label>Site name:</label>
-        <input type="text" name="siteName" />
-      </div>
-      <div class="form-column">
-        <label>Site number:</label>
-        <input type="text" name="siteNumber" />
-      </div>
-      <div class="form-column">
-        <label>Estate:</label>
+      <div class="form-column" *ngIf="showEstateField">
+        <label>נחלה:</label>
         <input type="text" name="nachala" />
+      </div>
+      <div class="form-column">
+        <label>שם אתר:</label>
+        <input type="text" name="siteName" />
       </div>
     </div>
     <div class="form-row">
       <div class="form-column">
-        <label>Thesis tax:</label>
+        <label>ת''ז:</label>
         <input type="text" name="idCard" />
       </div>
       <div class="form-column">
-        <label>Tax in KN'T:</label>
+        <label>מס' בקנ''ט:</label>
         <input type="text" name="numberInKN" />
       </div>
     </div>
   </div>
   <div class="population">
-    <label>Population:</label>
+    <label class="populationLabel">אוכלוסיה:</label>
     <div class="population-checkboxes">
       <div>
         <input type="checkbox" name="activeFor3Years" /><label
-          >Active for 3 years</label
+          >פעיל 3 שנים</label
         >
       </div>
-      <div><input type="checkbox" name="active" /><label>Active</label></div>
-      <div><input type="checkbox" name="no" /><label>No</label></div>
-      <div><input type="checkbox" name="nothing" /><label>Nothing</label></div>
+      <div><input type="checkbox" name="active" /><label>פעיל</label></div>
+      <div><input type="checkbox" name="no" /><label>לא</label></div>
+      <div><input type="checkbox" name="nothing" /><label>כלום</label></div>
     </div>
   </div>
   <div class="buttons">
     <button>רענון</button>
     <button>Excel</button>
-    <button>חיפוש</button>
+    <button (click)="onMainSearch()">חיפוש</button>
   </div>
 </form>

@@ -4,7 +4,7 @@
     (ngSubmit)="add()"
     [formGroup]="DetailsForm"
   >
-    <div class="form-group mr-2">
+    <!-- <div class="form-group mr-2">
       <label for="year-select" class="mr-2"> בחר שנה: </label>
       <select
         id="year-select"
@@ -16,11 +16,10 @@
         <option value="2021">2021</option>
         <option value="2022">2022</option>
         <option value="2023">2023</option>
-        <!-- add more years as needed -->
       </select>
-    </div>
+    </div> -->
 
-    <div class="form-group mr-2">
+    <!-- <div class="form-group mr-2">
       <label for="month-select" class="mr-2"> :בחר חודש </label>
       <select
         id="month-select"
@@ -42,10 +41,11 @@
         <option value="11">נובמבר</option>
         <option value="12">דצמבר</option>
       </select>
-    </div>
+    </div> -->
+    <label for="username-input" class="mr-2"> <b>חיפוש מגדל: </b> </label>
 
     <div class="form-group mr-2">
-      <label for="username-input" class="mr-2"> בחר עובד: </label>
+      <label for="username-input" class="mr-2"> לפי שם: </label>
       <input
         [formControl]="usernameInput"
         id="username-input"
@@ -56,14 +56,17 @@
         [formControl]="usernameControl"
         [matAutocomplete]="auto"
       />
-      <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
-          {{ user }}
+      <mat-autocomplete #auto="matAutocomplete"  style="width: max-content;">
+        <mat-option style="  width: max-content !important;"
+          *ngFor="let user of filteredUsers | async"
+          [value]="user"
+        >
+        <div style="  width: max-content !important;">{{ user }}</div>
         </mat-option>
       </mat-autocomplete>
     </div>
 
-    <div class="form-group mr-2">
+    <!-- <div class="form-group mr-2">
       <label for="department-checkbox" class="mr-2">הצג חיפוש מורחב:</label>
       <input
         id="department-checkbox"
@@ -73,8 +76,15 @@
         [formControl]="selectedDepartmentControl"
         [(ngModel)]="selectedDepartment"
       />
-    </div>
+    </div> -->
 
-    <button type="submit" class="btn btn-primary">Search</button>
+    <button type="submit" class="btn btn-primary">חפש</button>
+    <!-- <button
+      (click)="downloadFile()"
+      class="btn btn-primary"
+      style="margin-left: 4px; margin-top: 0px; height: 39px"
+    >
+      ASCII הורד קובץ
+    </button> -->
   </form>
 </div>

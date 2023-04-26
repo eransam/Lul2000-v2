@@ -1,3 +1,10 @@
 .searchRepForm {
   justify-content: flex-end !important;
 }
+form,
+input,
+select {
+  direction: rtl;
+  text-align: right;
+  width: 500px !important;
+}

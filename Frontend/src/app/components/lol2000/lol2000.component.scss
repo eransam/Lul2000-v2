@@ -46,6 +46,17 @@ form label {
 .checkbox-group > div > label {
   margin-right: 10px;
 }
+.population {
+  display: flex;
+  flex-direction: row;
+  border: solid 1px black;
+  width: 323px;
+}
+
+.population-checkboxes {
+  display: flex;
+  flex-direction: row;
+}
 
 .population-checkboxes > div {
   display: flex;
@@ -67,16 +78,12 @@ button {
 .buttons {
   padding-top: 6%;
 }
-.population-checkboxes {
-  display: flex;
-  flex-direction: row;
-}
 
 .form-row {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  flex-basis: calc(33.3% - 10px);
+  //   flex-basis: calc(33.3% - 10px);
   margin-right: 10px;
   flex-direction: row-reverse;
 }
@@ -87,6 +94,6 @@ form label {
   display: flex;
 }
 
-.population {
-  padding-right: 6%;
+.populationLabel {
+  padding-right: 1px !important;
 }

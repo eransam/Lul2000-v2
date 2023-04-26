@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiPath: 'https://localhost:44397/',
+  apiPath: 'https://localhost:44380/',
 
   // auth:
   emailAndSSNUniqueUrl: 'http://localhost:3001/api/auth/ssn-email-unique/',

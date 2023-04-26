@@ -19,6 +19,7 @@ import { PurchaseDetailsReportsListComponent } from './components/purchase-detai
 import { LayoutComponent } from './components/layout-area/layout/layout.component';
 import { Lol2000Component } from './components/lol2000/lol2000.component';
 
+
 const routes: Routes = [
   { path: 'register', component: RegisterBothStepsComponent },
   { path: 'logout', component: LogoutComponent },

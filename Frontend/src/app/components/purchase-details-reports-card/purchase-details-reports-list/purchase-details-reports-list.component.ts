@@ -12,15 +12,11 @@ export class PurchaseDetailsReportsListComponent implements OnInit {
   constructor(private reportService: ReportService) {}
 
   async ngOnInit(): Promise<void> {
-    this.purchases = await this.reportService.bringRepIntheCurrentMonth();
+    // this.purchases = await this.reportService.bringRepIntheCurrentMonth();
     console.log('this.purchases: ', this.purchases);
   }
 
   public addRep(rep: any) {
     this.purchases = rep;
-
-    console.log('this.purchases in addRep: ', this.purchases);
-    console.log('this.purchases[0]: ', this.purchases[0]);
-    console.log('this.purchases[0].day: ', this.purchases[0].day);
   }
 }
