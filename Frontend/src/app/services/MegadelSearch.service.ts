@@ -33,10 +33,40 @@ export class MegadelSearchService {
     return item;
   }
 
+  async getAllShloha(): Promise<any[]> {
+    const item = await firstValueFrom(
+      this.http.get<any[]>(
+        `${environment.apiPath}growerService.asmx/getAllShloha`
+      )
+    );
+    console.log('item: ', item);
+    return item;
+  }
+
   async getAllMegadelDetailsWantedFunc(): Promise<any[]> {
     const item = await firstValueFrom(
       this.http.get<any[]>(
         `${environment.apiPath}growerService.asmx/getAllMegadelDetailsWantedFunc`
+      )
+    );
+    console.log('item: ', item);
+    return item;
+  }
+
+  async getAllNameSiteIdstatus(): Promise<any[]> {
+    const item = await firstValueFrom(
+      this.http.get<any[]>(
+        `${environment.apiPath}growerService.asmx/getAllNameSiteIdstatus`
+      )
+    );
+    console.log('item: ', item);
+    return item;
+  }
+
+  async getAllYeshovimAndEzurim(): Promise<any[]> {
+    const item = await firstValueFrom(
+      this.http.get<any[]>(
+        `${environment.apiPath}growerService.asmx/getAllYeshovimAndEzurim`
       )
     );
     console.log('item: ', item);

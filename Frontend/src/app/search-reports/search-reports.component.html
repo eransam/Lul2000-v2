@@ -1,90 +1,113 @@
 <div class="container my-3 searchRepForm">
   <form
     class="form-inline searchRepForm"
+    style="width: 100% !important"
     (ngSubmit)="add()"
     [formGroup]="DetailsForm"
   >
-    <!-- <div class="form-group mr-2">
-      <label for="year-select" class="mr-2"> בחר שנה: </label>
-      <select
-        id="year-select"
-        name="year"
-        class="form-control"
-        [(ngModel)]="selectedYear"
-        [formControl]="yearInput"
-      >
-        <option value="2021">2021</option>
-        <option value="2022">2022</option>
-        <option value="2023">2023</option>
-      </select>
-    </div> -->
-
-    <!-- <div class="form-group mr-2">
-      <label for="month-select" class="mr-2"> :בחר חודש </label>
-      <select
-        id="month-select"
-        name="month"
-        class="form-control"
-        [(ngModel)]="selectedMonth"
-        [formControl]="monthInput"
-      >
-        <option value="1">ינואר</option>
-        <option value="2">פברואר</option>
-        <option value="3">מרץ</option>
-        <option value="4">אפריל</option>
-        <option value="5">מאי</option>
-        <option value="6">יוני</option>
-        <option value="7">יולי</option>
-        <option value="8">אוגוסט</option>
-        <option value="9">ספטמבר</option>
-        <option value="10">אוקטובר</option>
-        <option value="11">נובמבר</option>
-        <option value="12">דצמבר</option>
-      </select>
-    </div> -->
-    <label for="username-input" class="mr-2"> <b>חיפוש מגדל: </b> </label>
-
-    <div class="form-group mr-2">
-      <label for="username-input" class="mr-2"> לפי שם: </label>
+    <div class="form-group mr-2 col-sm-6 col-md-3">
+      <label for="username-input" class="mr-2"> שם:</label>
       <input
         [formControl]="usernameInput"
         id="username-input"
         name="username"
         type="text"
-        class="form-control mr-2"
+        class="form-control mr-2 nameInput"
         [(ngModel)]="username"
         [formControl]="usernameControl"
         [matAutocomplete]="auto"
       />
-      <mat-autocomplete #auto="matAutocomplete"  style="width: max-content;">
-        <mat-option style="  width: max-content !important;"
-          *ngFor="let user of filteredUsers | async"
-          [value]="user"
+
+      <mat-autocomplete #auto="matAutocomplete" style="width: max-content">
+        <mat-option
+          style="width: max-content !important"
+          *ngFor="let userss of filteredUsers | async"
+          [value]="userss"
         >
-        <div style="  width: max-content !important;">{{ user }}</div>
+          <div style="width: max-content !important">{{ userss }}</div>
         </mat-option>
       </mat-autocomplete>
     </div>
 
-    <!-- <div class="form-group mr-2">
-      <label for="department-checkbox" class="mr-2">הצג חיפוש מורחב:</label>
+    <div class="form-group mr-2 col-sm-6 col-md-3">
+      <label for="age-input" class="mr-2"> אתר:</label>
       <input
-        id="department-checkbox"
-        name="department"
-        type="checkbox"
-        class="form-check-input"
-        [formControl]="selectedDepartmentControl"
-        [(ngModel)]="selectedDepartment"
+        [formControl]="siteInput"
+        id="age-input"
+        name="site"
+        type="text"
+        class="form-control mr-2 ageInput"
+        [(ngModel)]="site"
+        [formControl]="siteControl"
+        [matAutocomplete]="autoSite"
       />
-    </div> -->
+      <mat-autocomplete #autoSite="matAutocomplete" style="width: max-content">
+        <mat-option
+          style="width: max-content !important"
+          *ngFor="let user of filteredsite | async"
+          [value]="user"
+        >
+          <div style="width: max-content !important">{{ user }}</div>
+        </mat-option>
+      </mat-autocomplete>
+    </div>
 
-    <button type="submit" class="btn btn-primary">חפש</button>
-    <!-- <button
-      (click)="downloadFile()"
-      class="btn btn-primary"
-      style="margin-left: 4px; margin-top: 0px; height: 39px"
-    >
-      ASCII הורד קובץ
-    </button> -->
+    <div class="form-group mr-2 col-sm-6 col-md-3">
+      <label for="email-input" class="mr-2"> ישוב:</label>
+      <input
+        [formControl]="settlementInput"
+        id="settlement-input"
+        name="settlement"
+        type="text"
+        class="form-control mr-2 settlementInput"
+        [(ngModel)]="settlement"
+        [formControl]="settlementControl"
+        [matAutocomplete]="autoSettlement"
+      />
+      <mat-autocomplete
+        #autoSettlement="matAutocomplete"
+        style="width: max-content"
+      >
+        <mat-option
+          style="width: max-content !important"
+          *ngFor="let settlement12 of filteredsettlement | async"
+          [value]="settlement12"
+        >
+          <div style="width: max-content !important">{{ settlement12 }}</div>
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+
+    <div class="form-group mr-2 col-sm-6 col-md-3">
+      <label for="extension-input" class="mr-2"> שלוחה:</label>
+      <input
+        [formControl]="extensionInput"
+        id="extension-input"
+        name="extension"
+        type="text"
+        class="form-control mr-2 extensionInput"
+        [(ngModel)]="extension"
+        [formControl]="extensionControl"
+        [matAutocomplete]="autoextension"
+      />
+      <mat-autocomplete
+        #autoextension="matAutocomplete"
+        style="width: max-content"
+      >
+        <mat-option
+          style="width: max-content !important"
+          *ngFor="let settlement12 of filteredextension | async"
+          [value]="settlement12"
+        >
+          <div style="width: max-content !important">{{ settlement12 }}</div>
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+    <br />
+    <div class="my-3 col-12">
+      <button type="submit" class="btn btn-primary btnSubmit">
+        <img src="" class="mr-2" /> חפש
+      </button>
+    </div>
   </form>
 </div>
