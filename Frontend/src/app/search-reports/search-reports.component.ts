@@ -83,6 +83,16 @@ export class SearchReportsComponent implements OnInit {
   extensionControl = new FormControl();
 
   selectedDepartmentControl = new FormControl();
+
+
+  checkboxValue1 = false;
+  checkboxValue2 = false;
+  checkboxValue3 = false;
+  selectedCheckbox = '';
+  
+
+
+
   constructor(
     private reportService: ReportService,
     private megadelSearchService: MegadelSearchService,
@@ -110,6 +120,21 @@ export class SearchReportsComponent implements OnInit {
       map((value) => this._filterExtension(value))
     );
   }
+
+
+  updateValue() {
+    if (this.checkboxValue1) {
+      this.selectedCheckbox = 'Checkbox 1';
+    } else if (this.checkboxValue2) {
+      this.selectedCheckbox = 'Checkbox 2';
+    } else if (this.checkboxValue3) {
+      this.selectedCheckbox = 'Checkbox 3';
+    } else {
+      this.selectedCheckbox = '';
+    }
+  }
+
+  
 
   private _filterUser(value: string): string[] {
     const filterValue1 = value.toLowerCase();
