@@ -36,22 +36,38 @@
     <table #myTable>
       <thead>
         <tr>
+          <th>אתר</th>
+          <th>שם יצרן</th>
+          <th>מספר יצרן</th>
           <th>שם פרטי</th>
           <th>שם משפחה</th>
           <th>ת.ז</th>
-          <th>שם יצרן</th>
-          <th>מספר יצרן</th>
+          <th>שם ישוב</th>
+          <th>סוג מגדל</th>
+          <th>ג''ח</th>
+
           <th>סטטוס</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let purchase of purchases" [ngClass]="{'active-row': purchase.yz_is_activ === 1, 'inactive-row': purchase.yz_is_activ === 0}">
-            <td>{{ purchase.yz_first_name }}</td>
-          <td>{{ purchase.yz_last_name }}</td>
-          <td>{{ purchase.yz_zehut }}</td>
+        <tr
+          *ngFor="let purchase of purchases"
+          [ngClass]="{
+            'active-row': purchase.yz_is_activ === 1,
+            'inactive-row': purchase.yz_is_activ === 0
+          }"
+        >
+          <td>{{ purchase.yz_Id }}</td>
           <td>{{ purchase.yz_shem }}</td>
           <td>{{ purchase.yz_yzrn }}</td>
-          <td>{{ purchase.yz_is_activ === 1 ? 'פעיל' : 'לא פעיל' }}</td>
+          <td>{{ purchase.yz_first_name }}</td>
+          <td>{{ purchase.yz_last_name }}</td>
+          <td>{{ purchase.yz_zehut }}</td>
+          <td>{{ purchase.yz_shem_yeshuv }}</td>
+          <td>{{ purchase.yz_sug }}</td>
+          <td>{{ purchase.pa_Counter }}</td>
+
+          <td>{{ purchase.yz_is_activ === 1 ? "פעיל" : "לא פעיל" }}</td>
         </tr>
       </tbody>
     </table>

@@ -46,12 +46,75 @@ export class MegadelSearchService {
     return item;
   }
 
+  async all_Megadel_Details_ByFirstName_That_Active_To_Desplay(
+    firstName: any
+  ): Promise<any[]> {
+    const item = await firstValueFrom(
+      this.http.get<any[]>(
+        `${environment.apiPath}growerService.asmx/all_Megadel_Details_ByFirstName_That_Active_To_Desplay?firstName=${firstName}`
+      )
+    );
+    console.log('item: ', item);
+
+    return item;
+  }
+
+  async All_Megadel_Details_ByFirstName_All_To_Desplay(
+    firstName: any
+  ): Promise<any[]> {
+    const item = await firstValueFrom(
+      this.http.get<any[]>(
+        `${environment.apiPath}growerService.asmx/All_Megadel_Details_ByFirstName_All_To_Desplay?firstName=${firstName}`
+      )
+    );
+    console.log('item: ', item);
+
+    return item;
+  }
+
   async all_Megadel_Details_ByFirstName_That_NotActiv(
     firstName: any
   ): Promise<any[]> {
     const item = await firstValueFrom(
       this.http.get<any[]>(
         `${environment.apiPath}growerService.asmx/all_Megadel_Details_ByFirstName_That_NotActive?firstName=${firstName}`
+      )
+    );
+    console.log('item: ', item);
+
+    return item;
+  }
+
+  async all_Megadel_Details_ByFirstName_That_Not_Active_To_Desplay(
+    firstName: any
+  ): Promise<any[]> {
+    const item = await firstValueFrom(
+      this.http.get<any[]>(
+        `${environment.apiPath}growerService.asmx/all_Megadel_Details_ByFirstName_That_Not_Active_To_Desplay?firstName=${firstName}`
+      )
+    );
+    console.log('item: ', item);
+
+    return item;
+  }
+
+  async Get_num_of_gidol_hotz_from_yz_yzrn(pa_Yzrn: any): Promise<any[]> {
+    const item = await firstValueFrom(
+      this.http.get<any[]>(
+        `${environment.apiPath}growerService.asmx/get_num_of_gidol_hotz_from_yz_yzrn?pa_Yzrn=${pa_Yzrn}`
+      )
+    );
+    console.log('item: ', item);
+    return item;
+  }
+
+  async all_Megadel_Details_ByFirstName_and_shemYeshuv(
+    firstName: any,
+    shem_yeshuv: any
+  ): Promise<any[]> {
+    const item = await firstValueFrom(
+      this.http.get<any[]>(
+        `${environment.apiPath}growerService.asmx/all_Megadel_Details_ByFirstName_and_shemYeshuv?firstname=${firstName}&shem_yeshuv=${shem_yeshuv}`
       )
     );
     console.log('item: ', item);

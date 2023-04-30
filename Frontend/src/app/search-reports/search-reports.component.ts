@@ -53,7 +53,6 @@ export class SearchReportsComponent implements OnInit {
   extension1: any[] = [];
   extension2: any[];
 
-  detailsFromformUsername: any = '';
   detailsFromformcheckbox: any = '';
   detailsFromformMonth: any = '';
   detailsFromformYear: any = '';
@@ -65,10 +64,7 @@ export class SearchReportsComponent implements OnInit {
   filteredextension: Observable<string[]>;
 
   // מגדירים את הפורם אינפוטים כדי שדרכם יועבר הערך המוזן באינפוט
-  usernameControl = new FormControl();
-  siteControl = new FormControl();
-  settlementControl = new FormControl();
-  extensionControl = new FormControl();
+
   selectedDepartmentControl = new FormControl();
   monthInput: FormControl;
   usernameInput: FormControl;
@@ -84,7 +80,14 @@ export class SearchReportsComponent implements OnInit {
   checkBoxActive = false;
   checkBoxNotActive = false;
   checkBoxAll = false;
+
+  //   form varible:
   selectedCheckbox = '';
+  detailsFromformUsername: any = '';
+  usernameControl = new FormControl();
+  siteControl = new FormControl();
+  settlementControl = new FormControl();
+  extensionControl = new FormControl();
 
   constructor(
     private reportService: ReportService,
@@ -237,9 +240,23 @@ export class SearchReportsComponent implements OnInit {
     this.selectedButton = button;
     console.log('Selected button:', button);
   }
+  getSettlementName(value: string): string {
+    const parts = value.split('-');
+    return parts.slice(0, -1).join('-');
+  }
 
   async add() {
-    console.log('selectedCheckbox: ', this.selectedCheckbox);
+    let SettlementName = '';
+    console.log('usernameControl: ', this.usernameControl.value);
+    console.log('siteControl: ', this.siteControl.value);
+    console.log('settlementControl: ', this.settlementControl.value);
+    console.log('extensionControl: ', this.extensionControl.value);
+    if (this.settlementControl.value) {
+      SettlementName = this.getSettlementName(this.settlementControl.value);
+    }
+
+    console.log('SettlementName: ', SettlementName);
+
     this.detailsFromformUsername = this.usernameControl.value;
     if (this.detailsFromformUsername) {
       console.log(
@@ -249,19 +266,35 @@ export class SearchReportsComponent implements OnInit {
 
       if (this.selectedCheckbox === '' || this.selectedCheckbox === 'active') {
         const results =
-          await this.megadelSearchService.all_Megadel_Details_ByFirstName_That_Active(
+          await this.megadelSearchService.all_Megadel_Details_ByFirstName_That_Active_To_Desplay(
             this.detailsFromformUsername
           );
+        results.forEach(async (item) => {
+          let yz_yzrn = item.yz_yzrn;
+          const results2 =
+            await this.megadelSearchService.Get_num_of_gidol_hotz_from_yz_yzrn(
+              yz_yzrn
+            );
+          if (results2[0]?.pa_Counter) {
+            item.pa_Counter = results2[0].pa_Counter;
+          } else {
+            item.pa_Counter = 'אין גידול חוץ';
+          }
+
+          item.newParameter = 'some value';
+        });
+
+        console.log('results: ', results);
         this.addRep.emit(results);
       } else if (this.selectedCheckbox === 'notActive') {
         const results =
-          await this.megadelSearchService.all_Megadel_Details_ByFirstName_That_NotActiv(
+          await this.megadelSearchService.all_Megadel_Details_ByFirstName_That_Not_Active_To_Desplay(
             this.detailsFromformUsername
           );
         this.addRep.emit(results);
       } else if (this.selectedCheckbox === 'all') {
         const results =
-          await this.megadelSearchService.all_Megadel_Details_ByFirstName(
+          await this.megadelSearchService.All_Megadel_Details_ByFirstName_All_To_Desplay(
             this.detailsFromformUsername
           );
         this.addRep.emit(results);
@@ -269,3 +302,31 @@ export class SearchReportsComponent implements OnInit {
     }
   }
 }
+
+// yz_Id
+// :
+// 427
+// yz_first_name
+// :
+// "שמואל"
+// yz_is_activ
+// :
+// 1
+// yz_last_name
+// :
+// "לויט"
+// yz_shem
+// :
+// "לויט שמואל"
+// yz_shem_yeshuv
+// :
+// "נהלל"
+// yz_sug
+// :
+// 1
+// yz_yzrn
+// :
+// "00800359"
+// yz_zehut
+// :
+// "52240298"
