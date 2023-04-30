@@ -122,6 +122,48 @@ export class MegadelSearchService {
     return item;
   }
 
+  async allMegadelDetails_ByFirstName_and_shemYeshuv_To_Desplay(
+    firstName: any,
+    shem_yeshuv: any
+  ): Promise<any[]> {
+    const item = await firstValueFrom(
+      this.http.get<any[]>(
+        `${environment.apiPath}growerService.asmx/allMegadelDetails_ByFirstName_and_shemYeshuv_To_Desplay?firstname=${firstName}&yz_shem_yeshuv=${shem_yeshuv}`
+      )
+    );
+    console.log('item: ', item);
+
+    return item;
+  }
+
+  async AllMegadelDetails_ByFirstName_and_shemYeshuv_To_Desplay_that_active(
+    firstName: any,
+    shem_yeshuv: any
+  ): Promise<any[]> {
+    const item = await firstValueFrom(
+      this.http.get<any[]>(
+        `${environment.apiPath}growerService.asmx/AllMegadelDetails_ByFirstName_and_shemYeshuv_To_Desplay_that_active?firstname=${firstName}&yz_shem_yeshuv=${shem_yeshuv}`
+      )
+    );
+    console.log('item: ', item);
+
+    return item;
+  }
+
+  async AllMegadelDetails_ByFirstName_and_shemYeshuv_To_Desplay_that_Notactive(
+    firstName: any,
+    shem_yeshuv: any
+  ): Promise<any[]> {
+    const item = await firstValueFrom(
+      this.http.get<any[]>(
+        `${environment.apiPath}growerService.asmx/AllMegadelDetails_ByFirstName_and_shemYeshuv_To_Desplay_that_Notactive?firstname=${firstName}&yz_shem_yeshuv=${shem_yeshuv}`
+      )
+    );
+    console.log('item: ', item);
+
+    return item;
+  }
+
   async getAllShloha(): Promise<any[]> {
     const item = await firstValueFrom(
       this.http.get<any[]>(

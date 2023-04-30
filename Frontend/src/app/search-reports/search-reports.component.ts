@@ -83,7 +83,6 @@ export class SearchReportsComponent implements OnInit {
 
   //   form varible:
   selectedCheckbox = '';
-  detailsFromformUsername: any = '';
   usernameControl = new FormControl();
   siteControl = new FormControl();
   settlementControl = new FormControl();
@@ -247,27 +246,37 @@ export class SearchReportsComponent implements OnInit {
 
   async add() {
     let SettlementName = '';
+    let SitetName = '';
+    let Username = '';
+    let extension = this.extensionControl.value;
+
     console.log('usernameControl: ', this.usernameControl.value);
     console.log('siteControl: ', this.siteControl.value);
     console.log('settlementControl: ', this.settlementControl.value);
     console.log('extensionControl: ', this.extensionControl.value);
     if (this.settlementControl.value) {
+      // מלקט מהמחרוזת רק את שם היישוב
       SettlementName = this.getSettlementName(this.settlementControl.value);
     }
 
-    console.log('SettlementName: ', SettlementName);
+    if (this.siteControl.value) {
+      SitetName = this.siteControl.value.split('-').pop();
+    }
 
-    this.detailsFromformUsername = this.usernameControl.value;
-    if (this.detailsFromformUsername) {
-      console.log(
-        'this.detailsFromformUsername: ',
-        this.detailsFromformUsername
-      );
+    if (this.usernameControl.value) {
+      Username = this.usernameControl.value.split('-')[0];
+    }
 
+    console.log('SettlementName1: ', SettlementName);
+    console.log('SitetName1: ', SitetName);
+    console.log('Username1: ', Username);
+    console.log('extensionControl1: ', this.extensionControl.value);
+
+    if (Username && !extension && !SitetName && !SettlementName) {
       if (this.selectedCheckbox === '' || this.selectedCheckbox === 'active') {
         const results =
           await this.megadelSearchService.all_Megadel_Details_ByFirstName_That_Active_To_Desplay(
-            this.detailsFromformUsername
+            Username
           );
         results.forEach(async (item) => {
           let yz_yzrn = item.yz_yzrn;
@@ -289,44 +298,102 @@ export class SearchReportsComponent implements OnInit {
       } else if (this.selectedCheckbox === 'notActive') {
         const results =
           await this.megadelSearchService.all_Megadel_Details_ByFirstName_That_Not_Active_To_Desplay(
-            this.detailsFromformUsername
+            Username
           );
         this.addRep.emit(results);
       } else if (this.selectedCheckbox === 'all') {
         const results =
           await this.megadelSearchService.All_Megadel_Details_ByFirstName_All_To_Desplay(
-            this.detailsFromformUsername
+            Username
           );
         this.addRep.emit(results);
       }
     }
+
+    if (Username && !extension && !SitetName && SettlementName) {
+      if (this.selectedCheckbox === '' || this.selectedCheckbox === 'active') {
+        const results =
+          await this.megadelSearchService.AllMegadelDetails_ByFirstName_and_shemYeshuv_To_Desplay_that_active(
+            Username,
+            SettlementName
+          );
+        results.forEach(async (item) => {
+          let yz_yzrn = item.yz_yzrn;
+          const results2 =
+            await this.megadelSearchService.Get_num_of_gidol_hotz_from_yz_yzrn(
+              yz_yzrn
+            );
+          if (results2[0]?.pa_Counter) {
+            item.pa_Counter = results2[0].pa_Counter;
+          } else {
+            item.pa_Counter = 'אין גידול חוץ';
+          }
+
+          item.newParameter = 'some value';
+        });
+
+        console.log('results: ', results);
+        this.addRep.emit(results);
+      } else if (this.selectedCheckbox === 'notActive') {
+        const results =
+          await this.megadelSearchService.AllMegadelDetails_ByFirstName_and_shemYeshuv_To_Desplay_that_Notactive(
+            Username,
+            SettlementName
+          );
+        this.addRep.emit(results);
+      } else if (this.selectedCheckbox === 'all') {
+        const results =
+          await this.megadelSearchService.allMegadelDetails_ByFirstName_and_shemYeshuv_To_Desplay(
+            Username,
+            SettlementName
+          );
+        this.addRep.emit(results);
+      }
+    }
+
+
+
+    if (Username && !extension && SitetName && SettlementName) {
+        if (this.selectedCheckbox === '' || this.selectedCheckbox === 'active') {
+          const results =
+            await this.megadelSearchService.AllMegadelDetails_ByFirstName_and_shemYeshuv_To_Desplay_that_active(
+              Username,
+              SettlementName
+            );
+          results.forEach(async (item) => {
+            let yz_yzrn = item.yz_yzrn;
+            const results2 =
+              await this.megadelSearchService.Get_num_of_gidol_hotz_from_yz_yzrn(
+                yz_yzrn
+              );
+            if (results2[0]?.pa_Counter) {
+              item.pa_Counter = results2[0].pa_Counter;
+            } else {
+              item.pa_Counter = 'אין גידול חוץ';
+            }
+  
+            item.newParameter = 'some value';
+          });
+  
+          console.log('results: ', results);
+          this.addRep.emit(results);
+        } else if (this.selectedCheckbox === 'notActive') {
+          const results =
+            await this.megadelSearchService.AllMegadelDetails_ByFirstName_and_shemYeshuv_To_Desplay_that_Notactive(
+              Username,
+              SettlementName
+            );
+          this.addRep.emit(results);
+        } else if (this.selectedCheckbox === 'all') {
+          const results =
+            await this.megadelSearchService.allMegadelDetails_ByFirstName_and_shemYeshuv_To_Desplay(
+              Username,
+              SettlementName
+            );
+          this.addRep.emit(results);
+        }
+      }
+
+
   }
 }
-
-// yz_Id
-// :
-// 427
-// yz_first_name
-// :
-// "שמואל"
-// yz_is_activ
-// :
-// 1
-// yz_last_name
-// :
-// "לויט"
-// yz_shem
-// :
-// "לויט שמואל"
-// yz_shem_yeshuv
-// :
-// "נהלל"
-// yz_sug
-// :
-// 1
-// yz_yzrn
-// :
-// "00800359"
-// yz_zehut
-// :
-// "52240298"
