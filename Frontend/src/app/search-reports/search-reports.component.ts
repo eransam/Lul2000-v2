@@ -29,10 +29,6 @@ export class SearchReportsComponent implements OnInit {
   totalAmountTemplate: any = '';
   checkDecimal: any = '';
 
-  hova: any = '135201';
-  zhot: any = '521222';
-  theTtxetToTheAscii: any = '';
-
   @Output()
   public addRep = new EventEmitter<any>();
 
@@ -44,6 +40,7 @@ export class SearchReportsComponent implements OnInit {
   settlement: string;
   extension: string;
 
+  // the input box
   users: any[] = [];
   users2: any[];
 
@@ -55,15 +52,6 @@ export class SearchReportsComponent implements OnInit {
 
   extension1: any[] = [];
   extension2: any[];
-
-  yearInput: FormControl;
-  DetailsForm: FormGroup;
-  monthInput: FormControl;
-
-  usernameInput: FormControl;
-  settlementInput: FormControl;
-  siteInput: FormControl;
-  extensionInput: FormControl;
 
   detailsFromformUsername: any = '';
   detailsFromformcheckbox: any = '';
@@ -81,17 +69,22 @@ export class SearchReportsComponent implements OnInit {
   siteControl = new FormControl();
   settlementControl = new FormControl();
   extensionControl = new FormControl();
-
   selectedDepartmentControl = new FormControl();
+  monthInput: FormControl;
+  usernameInput: FormControl;
+  settlementInput: FormControl;
+  siteInput: FormControl;
+  extensionInput: FormControl;
+  yearInput: FormControl;
 
+  //   FormGroup:
+  DetailsForm: FormGroup;
 
-  checkboxValue1 = false;
-  checkboxValue2 = false;
-  checkboxValue3 = false;
+  //   the checkBox search:
+  checkBoxActive = false;
+  checkBoxNotActive = false;
+  checkBoxAll = false;
   selectedCheckbox = '';
-  
-
-
 
   constructor(
     private reportService: ReportService,
@@ -121,20 +114,30 @@ export class SearchReportsComponent implements OnInit {
     );
   }
 
-
   updateValue() {
-    if (this.checkboxValue1) {
-      this.selectedCheckbox = 'Checkbox 1';
-    } else if (this.checkboxValue2) {
-      this.selectedCheckbox = 'Checkbox 2';
-    } else if (this.checkboxValue3) {
-      this.selectedCheckbox = 'Checkbox 3';
+    if (this.checkBoxActive) {
+      this.selectedCheckbox = 'active';
+    } else if (this.checkBoxNotActive) {
+      this.selectedCheckbox = 'notActive';
+    } else if (this.checkBoxAll) {
+      this.selectedCheckbox = 'all';
     } else {
       this.selectedCheckbox = '';
     }
   }
 
-  
+  checkboxClicked(checkboxValue: string) {
+    if (checkboxValue === this.selectedCheckbox) {
+      // If the clicked checkbox is already selected, unselect it
+      this.selectedCheckbox = '';
+    } else {
+      // Otherwise, select the clicked checkbox and unselect the other checkboxes
+      this.selectedCheckbox = checkboxValue;
+      this.checkBoxActive = false;
+      this.checkBoxNotActive = false;
+      this.checkBoxAll = false;
+    }
+  }
 
   private _filterUser(value: string): string[] {
     const filterValue1 = value.toLowerCase();
@@ -236,6 +239,7 @@ export class SearchReportsComponent implements OnInit {
   }
 
   async add() {
+    console.log('selectedCheckbox: ', this.selectedCheckbox);
     this.detailsFromformUsername = this.usernameControl.value;
     if (this.detailsFromformUsername) {
       console.log(
@@ -243,12 +247,25 @@ export class SearchReportsComponent implements OnInit {
         this.detailsFromformUsername
       );
 
-      const results =
-        await this.megadelSearchService.getAllMegadelDetailsWantedByFirstNameFunc(
-          this.detailsFromformUsername
-        );
-      console.log('results: ', results);
-      this.addRep.emit(results);
+      if (this.selectedCheckbox === '' || this.selectedCheckbox === 'active') {
+        const results =
+          await this.megadelSearchService.all_Megadel_Details_ByFirstName_That_Active(
+            this.detailsFromformUsername
+          );
+        this.addRep.emit(results);
+      } else if (this.selectedCheckbox === 'notActive') {
+        const results =
+          await this.megadelSearchService.all_Megadel_Details_ByFirstName_That_NotActiv(
+            this.detailsFromformUsername
+          );
+        this.addRep.emit(results);
+      } else if (this.selectedCheckbox === 'all') {
+        const results =
+          await this.megadelSearchService.all_Megadel_Details_ByFirstName(
+            this.detailsFromformUsername
+          );
+        this.addRep.emit(results);
+      }
     }
   }
 }

@@ -20,12 +20,38 @@ import store from '../redux/store';
 export class MegadelSearchService {
   constructor(private http: HttpClient) {}
 
-  async getAllMegadelDetailsWantedByFirstNameFunc(
+  //   Megadel: ------------------------------------------------------------------------------------------------------------------------
+
+  async all_Megadel_Details_ByFirstName(firstName: any): Promise<any[]> {
+    const item = await firstValueFrom(
+      this.http.get<any[]>(
+        `${environment.apiPath}growerService.asmx/All_Megadel_Details_ByFirstName_All?firstName=${firstName}`
+      )
+    );
+    console.log('item: ', item);
+
+    return item;
+  }
+
+  async all_Megadel_Details_ByFirstName_That_Active(
     firstName: any
   ): Promise<any[]> {
     const item = await firstValueFrom(
       this.http.get<any[]>(
-        `${environment.apiPath}growerService.asmx/GetAllMegadelDetailsWantedByFirstName?firstname=${firstName}`
+        `${environment.apiPath}growerService.asmx/all_Megadel_Details_ByFirstName_That_Active?firstName=${firstName}`
+      )
+    );
+    console.log('item: ', item);
+
+    return item;
+  }
+
+  async all_Megadel_Details_ByFirstName_That_NotActiv(
+    firstName: any
+  ): Promise<any[]> {
+    const item = await firstValueFrom(
+      this.http.get<any[]>(
+        `${environment.apiPath}growerService.asmx/all_Megadel_Details_ByFirstName_That_NotActive?firstName=${firstName}`
       )
     );
     console.log('item: ', item);
@@ -72,6 +98,8 @@ export class MegadelSearchService {
     console.log('item: ', item);
     return item;
   }
+
+  //  end Megadel: ------------------------------------------------------------------------------------------------------------------------
 
   async bringRepMin(userNameOrId: any, month: any, year: any): Promise<any[]> {
     console.log('month: ', month);
